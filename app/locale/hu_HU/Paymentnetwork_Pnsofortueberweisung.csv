@@ -74,3 +74,4 @@ Create credit memo automatically,Jóváírás automatikus kiállítása
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Jóváírás kerül automatikusan kiállítára, ha a tranzakció a SOFORT rendszerében stornózásra kerül.
 en,hu
 "Send order confirmation","A megrendelés visszaigazolásának küldése"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Továbbítás a SOFORT Bankinghez. A fizetés még nincs lezárva. Tranzakciós azonosító: [[transaction_id]]. Idő: [[date]] óra"

@@ -31,6 +31,7 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
      * @var string
      */
     private $_commentMessages = array(
+        'redirect' => 'Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]',
         'abort' => 'Payment aborted. Time: %s',
         'pending_not_credited_yet' => 'SOFORT Banking has been completed successfully - Transaction ID: [[transaction_id]]. Time: [[date]]',
         'untraceable_sofort_bank_account_needed' => 'SOFORT Banking has been completed successfully - Transaction ID: [[transaction_id]]. Time: [[date]]',
@@ -41,6 +42,23 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
         'refunded_compensation' => 'Partial amount will be refunded - [[refunded_amount]]. Time: [[date]]',
         'refunded_refunded' => 'Amount will be refunded. Time: [[date]]'
     );
+    
+    public function redirectAction()
+    {
+        $comment = Mage::helper('sofort')->__($this->_commentMessages['redirect']);
+        $comment = str_replace('[[date]]', date('d.m.Y H:i:s', Mage::getModel('core/date')->timestamp(time())), $comment);
+        $comment = str_replace(
+            '[[transaction_id]]', 
+            $this->_getOrder()->getPayment()->getAdditionalInformation('sofort_transaction_id'), 
+            $comment
+        );
+        
+        $this->_getOrder()->addStatusHistoryComment($comment);
+        
+        $this->_getOrder()->save();
+        
+        $this->_redirectUrl(Mage::getSingleton('customer/session')->getPaymentUrl());
+    }
     
     /**
      * Sofort success url
@@ -56,6 +74,7 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
                 Mage::logException($e);
             }
         }
+        
         $this->_redirect('checkout/onepage/success/');
     }
 
@@ -66,7 +85,7 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
     {
         $this->_getOrder()->cancel();
         $this->_getOrder()->addStatusHistoryComment(
-            sprintf(Mage::helper('sofort')->__($this->_commentMessages['abort']), date('d.m.Y H:i:s'))
+            sprintf(Mage::helper('sofort')->__($this->_commentMessages['abort']), date('d.m.Y H:i:s', Mage::getModel('core/date')->timestamp(time())))
         );
         
         $this->_getOrder()->save();
@@ -303,7 +322,7 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
             $comment = Mage::helper('sofort')->__($this->_commentMessages[$commentKey]);
         }
         
-        $comment = str_replace('[[date]]', date('d.m.Y H:i:s'), $comment);
+        $comment = str_replace('[[date]]', date('d.m.Y H:i:s', Mage::getModel('core/date')->timestamp(time())), $comment);
         $comment = str_replace('[[transaction_id]]', $statusData['transaction_id'], $comment);
         $comment = str_replace('[[refunded_amount]]', $statusData['refunded_amount'], $comment);
         

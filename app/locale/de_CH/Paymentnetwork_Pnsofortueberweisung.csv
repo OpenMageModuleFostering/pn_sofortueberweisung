@@ -74,3 +74,4 @@ Create credit memo automatically,Gutschrift automatisch erstellen
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,"Es wird automatisch eine Gutschrift  erstellt, wenn einer Transaktion im SOFORT System zurückgebucht wurde."
 en,de
 "Send order confirmation","Bestellbestätigung senden"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Weiterleitung zu SOFORT Überweisung. Zahlung noch nicht abgeschlossen. Transaktions-ID: [[transaction_id]]. Zeit: [[date]] Uhr"

@@ -74,3 +74,4 @@ Create credit memo automatically,Creditnota automatisch aanmaken
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Er wordt automatisch een creditnota aangemaakt wanneer er een transactie in het SOFORT systeem teruggeboekt wordt.
 en,nl
 "Send order confirmation","Bestelbevestiging sturen"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Doorsturing naar SOFORT Banking. Betaling nog niet afgesloten. Transactie-ID: [[transaction_id]]. Tijd [[date]] uur"

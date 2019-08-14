@@ -109,7 +109,7 @@ class Paymentnetwork_Pnsofortueberweisung_Model_Method_Sofort extends Mage_Payme
         
         $url = $communication->getUrl();
         
-        Mage::getSingleton('customer/session')->setRedirectUrl($url);
+        Mage::getSingleton('customer/session')->setPaymentUrl($url);
         
         $this->getInfoInstance()->setAdditionalInformation(
             'sofort_transaction_id', 
@@ -126,7 +126,10 @@ class Paymentnetwork_Pnsofortueberweisung_Model_Method_Sofort extends Mage_Payme
      */
     public function getOrderPlaceRedirectUrl()
     {
-        return Mage::getSingleton('customer/session')->getRedirectUrl();
+        return Mage::getUrl('pisofort/payment/redirect', array(
+                'orderId' => Mage::getSingleton('checkout/session')->getQuote()->getReservedOrderId()
+            )
+        );
     }
 
     /**

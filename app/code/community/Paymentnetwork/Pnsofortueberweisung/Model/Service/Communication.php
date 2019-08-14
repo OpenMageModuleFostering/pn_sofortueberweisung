@@ -126,7 +126,7 @@ class Paymentnetwork_Pnsofortueberweisung_Model_Service_Communication
         $orderId = $this->_getQuote()->getReservedOrderId();
         
         $this->_sofortSdk->setVersion('magento_3.0');
-        $this->_sofortSdk->setAmount($this->_getQuote()->getGrandTotal());
+        $this->_sofortSdk->setAmount(Mage::app()->getStore()->roundPrice($this->_getQuote()->getGrandTotal()));
         $this->_sofortSdk->setCurrencyCode($this->_getQuote()->getBaseCurrencyCode());
         $this->_sofortSdk->setReason($this->_getReasonOne(), $this->_getReasonTwo());
         $this->_sofortSdk->setSuccessUrl(Mage::getUrl('pisofort/payment/success', array('orderId' => $orderId)), true);
@@ -179,7 +179,7 @@ class Paymentnetwork_Pnsofortueberweisung_Model_Service_Communication
         $replaceData = array(
             '{{orderid}}' => $this->_getQuote()->getReservedOrderId(),
             '{{name}}' => $this->_getQuote()->getBillingAddress()->getFirstname() . ' ' . $this->_getQuote()->getBillingAddress()->getLastname(),
-            '{{date}}' => date('Y-m-d H:i:s'),
+            '{{date}}' => date('d.m.Y H:i:s', Mage::getModel('core/date')->timestamp(time())),
             '{{shopname}}' => Mage::app()->getStore()->getName(),
             '{{transaction}}' => '-TRANSACTION-'
             

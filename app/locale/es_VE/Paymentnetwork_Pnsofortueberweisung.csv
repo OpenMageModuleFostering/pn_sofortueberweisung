@@ -74,3 +74,4 @@ Create credit memo automatically,Crear el abono en cuenta automáticamente
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Se creará automáticamente un abono en cuenta si se ha devuelto el importe de una transacción en el sistema de SOFORT.
 en,es
 "Send order confirmation","Enviar confirmación de la orden"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Redireccionando a SOFORT Banking. Pago todavía no completado. ID de la transacción: [[transaction_id]]. Fecha y hora: [[date]] h"

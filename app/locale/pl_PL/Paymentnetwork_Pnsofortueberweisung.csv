@@ -74,3 +74,4 @@ Create credit memo automatically,Wygeneruj automatycznie notę uznaniową
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Jeżeli transakcja została zaznaczona do przelewu zwrotnego w systemie SOFORT, nota uznaniowa zostanie wygenerowana automatycznie.
 en,pl
 "Send order confirmation","Wysłać potwierdzenie zamówienia"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Przekierowanie do SOFORT Banking. Płatność nie została jeszcze zakończona. Numer transakcji: [[transaction_id]]. Godzina: [[date]]"

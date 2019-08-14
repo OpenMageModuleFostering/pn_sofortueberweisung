@@ -74,3 +74,4 @@ Create credit memo automatically,Crei l'accredito automaticamente
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Viene creato automaticamente un accredito se una transazione è stata rimborsata nel sistema SOFORT.
 en,it
 "Send order confirmation","Invia conferma d'ordine"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Inoltro a SOFORT Banking. Pagamento non ancora terminato. ID transazione: [[transaction_id]]. Data e ora: [[date]]"

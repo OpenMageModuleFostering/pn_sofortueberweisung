@@ -74,3 +74,4 @@ Set-up and configuration, Set-up and configuration
 "A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.","A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel."
 en,en
 "Send order confirmation","Send order confirmation"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]"

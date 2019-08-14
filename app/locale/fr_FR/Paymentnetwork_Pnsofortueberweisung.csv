@@ -74,3 +74,4 @@ Create credit memo automatically,Générer un avoir automatiquement
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Un avoir est généré automatiquement lorsqu'une transaction a été remboursée dans le système SOFORT.
 en,fr
 "Send order confirmation","Envoyer la confirmation de commande"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Redirection vers SOFORT Banking. Paiement pas encore terminé. N° de transaction : [[transaction_id]]. Heure : [[date]] heures"

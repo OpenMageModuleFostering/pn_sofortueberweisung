@@ -74,3 +74,4 @@ Create credit memo automatically,Vyhotovit automaticky dobropis
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Automaticky se vyhotoví dobropis, pokud byla transakce v systému SOFORT odepsána.
 en,cz
 "Send order confirmation","Odeslat potvrzení objednávky"
+"Redirection to SOFORT Banking. Transaction not finished. Transaction ID: [[transaction_id]]. Time: [[date]]", "Přesměrování na SOFORT Banking. Platba ještě nebyla uzavřena. ID transakce: [[transaction_id]]. Čas: [[date]] hod"
