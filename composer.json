@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/pn_sofortueberweisung",
+    "type": "magento-module",
+    "license": "Open-Software-License-(OSL)",
+    "homepage": "",
+    "description": "Extension for Payment Methods from SOFORT AG",
+    "authors": [
+    {
+        "name": "SP",
+        "email": "integration@sofort.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
