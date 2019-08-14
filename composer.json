@@ -3,7 +3,7 @@
     "type": "magento-module",
     "license": "Open-Software-License-(OSL)",
     "homepage": "",
-    "description": "Some Text",
+    "description": "Extension for the payment method from SOFORT AG",
     "authors": [
     {
         "name": "Paymentnetwork",
