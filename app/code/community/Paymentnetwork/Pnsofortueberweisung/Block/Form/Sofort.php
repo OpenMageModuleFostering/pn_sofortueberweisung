@@ -18,18 +18,34 @@
  * @copyright Copyright (c) 2014 PayIntelligent GmbH (http://www.payintelligent.de)
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
-class Paymentnetwork_Pnsofortueberweisung_Model_Observer
+class Paymentnetwork_Pnsofortueberweisung_Block_Form_Sofort extends Mage_Payment_Block_Form
 {
-
     /**
-     * Reactivate the cart because the order isn't finished
-     * 
-     * @param Varien_Event_Observer $observer 
+     * Construct
      */
-    public function refillBasket(Varien_Event_Observer $observer)
+    protected function _construct()
     {
-        if ($observer->getEvent()->getQuote()->getPayment()->getMethod() === 'paymentnetwork_pnsofortueberweisung') {
-            $observer->getEvent()->getQuote()->setIsActive(true)->save();
-        }
+        parent::_construct();
+        $this->setTemplate('paymentnetwork/sofort/form/sofort.phtml');
+    }
+    
+    /**
+     * Check if presentation method is banner
+     * 
+     * @return boolean
+     */
+    public function isBanner()
+    {
+        return (Mage::getStoreConfig('payment/paymentnetwork_pnsofortueberweisung/checkout_presentation') === 'banner');
+    }
+    
+    /**
+     * Is customer protection enabled
+     * 
+     * @return boolean
+     */
+    public function isCustomerProtectionEnabled()
+    {
+        return (boolean) Mage::getStoreConfig('payment/paymentnetwork_pnsofortueberweisung/customer_protection');
     }
 }

@@ -18,18 +18,26 @@
  * @copyright Copyright (c) 2014 PayIntelligent GmbH (http://www.payintelligent.de)
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
-class Paymentnetwork_Pnsofortueberweisung_Model_Observer
+class Paymentnetwork_Pnsofortueberweisung_Model_Source_Checkout_Presentation
 {
-
     /**
-     * Reactivate the cart because the order isn't finished
-     * 
-     * @param Varien_Event_Observer $observer 
+     * Define which Creditcard Logos are shown for payment
+     *
+     * @return array
      */
-    public function refillBasket(Varien_Event_Observer $observer)
+    public function toOptionArray()
     {
-        if ($observer->getEvent()->getQuote()->getPayment()->getMethod() === 'paymentnetwork_pnsofortueberweisung') {
-            $observer->getEvent()->getQuote()->setIsActive(true)->save();
-        }
+        $presentationMethods = array(
+            array(
+                'label' => Mage::helper('core')->__('Banner'),
+                'value' => 'banner'
+            ),
+            array(
+                'label' => Mage::helper('core')->__('Logo & Text'),
+                'value' => 'logo'
+            ),
+        );
+        
+        return $presentationMethods;
     }
 }

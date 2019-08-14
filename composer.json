@@ -3,11 +3,11 @@
     "type": "magento-module",
     "license": "Open-Software-License-(OSL)",
     "homepage": "",
-    "description": "Extension for Payment Methods from SOFORT AG",
+    "description": "Some Text",
     "authors": [
     {
-        "name": "SP",
-        "email": "integration@sofort.com"
+        "name": "Paymentnetwork",
+        "email": "support@sofort.com"
     }
 ],
     "suggest": {
