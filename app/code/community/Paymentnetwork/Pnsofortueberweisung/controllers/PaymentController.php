@@ -48,6 +48,14 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
     public function successAction()
     {
         Mage::getModel('sales/quote')->load($this->_getOrder()->getQuoteId())->setIsActive(false)->save();
+        
+        if($this->_getSendOrderConfirmationOption()) {
+            try {
+                $this->_getOrder()->sendNewOrderEmail();
+            } catch (Exception $e) {
+                Mage::logException($e);
+            }
+        }
         $this->_redirect('checkout/onepage/success/');
     }
 
@@ -87,6 +95,15 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
     private function _getCreateInvoiceOption()
     {
         return Mage::getStoreConfig('payment/paymentnetwork_pnsofortueberweisung/create_invoice', Mage::app()->getStore()->getStoreId());
+    }
+    
+    /**
+     * Get send order confirmation option
+     * @return boolean
+     */
+    private function _getSendOrderConfirmationOption()
+    {
+        return (boolean)Mage::getStoreConfig('payment/paymentnetwork_pnsofortueberweisung/send_order_confirmation', Mage::app()->getStore()->getStoreId());
     }
     
     /**

@@ -73,3 +73,4 @@ The receipt of the money ( can be only detected with an account with SOFORT Bank
 Create credit memo automatically,Jóváírás automatikus kiállítása
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Jóváírás kerül automatikusan kiállítára, ha a tranzakció a SOFORT rendszerében stornózásra kerül.
 en,hu
+"Send order confirmation","A megrendelés visszaigazolásának küldése"

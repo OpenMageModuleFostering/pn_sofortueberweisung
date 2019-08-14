@@ -73,3 +73,4 @@ The receipt of the money ( can be only detected with an account with SOFORT Bank
 Create credit memo automatically,Gutschrift automatisch erstellen
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,"Es wird automatisch eine Gutschrift  erstellt, wenn einer Transaktion im SOFORT System zurückgebucht wurde."
 en,de
+"Send order confirmation","Bestellbestätigung senden"

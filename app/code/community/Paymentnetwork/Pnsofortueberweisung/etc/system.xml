@@ -176,6 +176,7 @@ $("row_payment_paymentnetwork_pnsofortueberweisung_create_invoice").toggle();
 $("row_payment_paymentnetwork_pnsofortueberweisung_status_config_text_one").toggle();
 $("row_payment_paymentnetwork_pnsofortueberweisung_status_config_text_two").toggle();
 $("row_payment_paymentnetwork_pnsofortueberweisung_create_creditmemo").toggle();
+$("row_payment_paymentnetwork_pnsofortueberweisung_send_order_confirmation").toggle();
 $("row_payment_paymentnetwork_pnsofortueberweisung_send_mail").toggle();});</script>]]></label>
                             <sort_order>32</sort_order>
                             <frontend_model>sofort/adminhtml_payment_config_label_toggle</frontend_model>
@@ -364,6 +365,15 @@ $("row_payment_paymentnetwork_pnsofortueberweisung_send_mail").toggle();});</scr
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </create_creditmemo>
+                        <send_order_confirmation translate="label">
+                            <label>Send order confirmation</label>
+                            <sort_order>235</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </send_order_confirmation>
                         <send_mail translate="label">
                             <label>Send receipt emails</label>
                             <sort_order>240</sort_order>

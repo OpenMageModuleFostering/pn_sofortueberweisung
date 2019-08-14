@@ -73,3 +73,4 @@ Set-up and configuration, Set-up and configuration
 "Create credit memo automatically","Create credit memo automatically"
 "A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.","A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel."
 en,en
+"Send order confirmation","Send order confirmation"

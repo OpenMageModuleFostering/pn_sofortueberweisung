@@ -38,6 +38,7 @@ class Paymentnetwork_Pnsofortueberweisung_Block_Adminhtml_Payment_Config_Label_T
                    $("row_payment_paymentnetwork_pnsofortueberweisung_status_config_text_one").toggle();
                    $("row_payment_paymentnetwork_pnsofortueberweisung_status_config_text_two").toggle();
                    $("row_payment_paymentnetwork_pnsofortueberweisung_create_creditmemo").toggle();
+                   $("row_payment_paymentnetwork_pnsofortueberweisung_send_order_confirmation").toggle();
                    $("row_payment_paymentnetwork_pnsofortueberweisung_send_mail").toggle();';
         
         $labelText = Mage::helper('sofort')->__("Adjust the SOFORT Banking module properties here. <a onclick='%s'>(Click to open)</a>");

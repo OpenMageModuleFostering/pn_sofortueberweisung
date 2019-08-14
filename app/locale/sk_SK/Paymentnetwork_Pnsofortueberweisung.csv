@@ -73,3 +73,4 @@ The receipt of the money ( can be only detected with an account with SOFORT Bank
 Create credit memo automatically,Automaticky vytvoriť dobropis
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Keď bola transakcia v systéme SOFORT odpísaná, bude automaticky vytvorený dobropis.
 en,sk
+"Send order confirmation","Odoslať potvrdenie objednávky"

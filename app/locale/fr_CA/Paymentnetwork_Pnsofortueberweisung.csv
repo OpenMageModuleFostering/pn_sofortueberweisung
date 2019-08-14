@@ -73,3 +73,4 @@ The receipt of the money ( can be only detected with an account with SOFORT Bank
 Create credit memo automatically,Générer un avoir automatiquement
 A credit memo will be created automatically if a transaction was refunded by using the SOFORT panel.,Un avoir est généré automatiquement lorsqu'une transaction a été remboursée dans le système SOFORT.
 en,fr
+"Send order confirmation","Envoyer la confirmation de commande"

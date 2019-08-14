@@ -24,7 +24,7 @@
     
     <modules>
         <Paymentnetwork_Pnsofortueberweisung>
-            <version>3.0.2</version>
+            <version>3.0.3</version>
         </Paymentnetwork_Pnsofortueberweisung>
     </modules>
 
@@ -77,6 +77,7 @@
                 <order_status_received_credited>processing</order_status_received_credited>
                 <create_creditmemo>0</create_creditmemo>
                 <create_invoice>after_order</create_invoice>
+                <send_order_confirmation>1</send_order_confirmation>
                 <send_mail>1</send_mail>
             </paymentnetwork_pnsofortueberweisung>
             <!-- just for compatibility -->
