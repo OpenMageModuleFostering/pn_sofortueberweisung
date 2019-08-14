@@ -98,7 +98,9 @@ class Paymentnetwork_Pnsofortueberweisung_Model_Service_Communication
         $transactionData = array('status' => 'undefined', 'reason' => 'undefined');
         
         $notificationSdk = new SofortLibNotification();
+        
         $transactionId = $notificationSdk->getNotification($rawBody);
+        
         if ($transactionId) {
             $transactionDataSdk = new SofortLibTransactionData(            
                 Mage::getStoreConfig(
@@ -125,7 +127,7 @@ class Paymentnetwork_Pnsofortueberweisung_Model_Service_Communication
     {
         $orderId = $this->_getQuote()->getReservedOrderId();
         
-        $this->_sofortSdk->setVersion('magento_3.0');
+        $this->_sofortSdk->setVersion('magento_3.0.7');
         $this->_sofortSdk->setAmount(Mage::app()->getStore()->roundPrice($this->_getQuote()->getGrandTotal()));
         $this->_sofortSdk->setCurrencyCode($this->_getQuote()->getBaseCurrencyCode());
         $this->_sofortSdk->setReason($this->_getReasonOne(), $this->_getReasonTwo());

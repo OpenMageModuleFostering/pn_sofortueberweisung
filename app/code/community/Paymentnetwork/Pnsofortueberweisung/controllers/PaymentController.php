@@ -45,6 +45,7 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
     
     public function redirectAction()
     {
+        
         $comment = Mage::helper('sofort')->__($this->_commentMessages['redirect']);
         $comment = str_replace('[[date]]', date('d.m.Y H:i:s', Mage::getModel('core/date')->timestamp(time())), $comment);
         $comment = str_replace(
@@ -101,7 +102,7 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
         $communication = Mage::getModel(
             'Paymentnetwork_Pnsofortueberweisung_Model_Service_Communication'
         );
-        
+                
         $statusData = $communication->getStatusData(file_get_contents('php://input'));
         
         $this->_handleSofortStatusUpdate($statusData);
@@ -122,7 +123,7 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
      */
     private function _getSendOrderConfirmationOption()
     {
-        return (boolean)Mage::getStoreConfig('payment/paymentnetwork_pnsofortueberweisung/send_order_confirmation', Mage::app()->getStore()->getStoreId());
+        return (boolean) Mage::getStoreConfig('payment/paymentnetwork_pnsofortueberweisung/send_order_confirmation', Mage::app()->getStore()->getStoreId());
     }
     
     /**
@@ -247,6 +248,7 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
      */
     private function _handleSofortStatusUpdate(array $statusData)
     {
+                
         $allowedStates = array(
             'loss' => array('not_credited'), 
             'pending' => array('not_credited_yet'), 
@@ -258,21 +260,21 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
         if (array_key_exists($statusData['status'], $allowedStates) 
             && in_array($statusData['reason'], $allowedStates[$statusData['status']])) {
             
+            if ($statusData['status'] === 'untraceable' && $statusData['reason'] === 'sofort_bank_account_needed') {
+                $statusData['status'] = 'pending';
+                $statusData['reason'] = 'not_credited_yet';
+            }
+            
             $status = $statusData['status'];
             $reason = $statusData['reason'];
             
-            if ($status === 'untraceable' && $reason === 'sofort_bank_account_needed') {
-                $status = 'pending';
-                $reason = 'not_credited_yet';
-            }
-            
-            $state = Mage::getStoreConfig(
+            $selectedStatus = Mage::getStoreConfig(
                 'payment/paymentnetwork_pnsofortueberweisung/order_status_' . $status . '_' . $reason, 
                 Mage::app()->getStore()->getStoreId()
             );
-            
-            if (!empty($state)) {
-                $this->_handleMagentoStatusUpdate($statusData, $state);
+                        
+            if (!empty($selectedStatus)) {
+                $this->_handleMagentoStatusUpdate($statusData, $selectedStatus);
             } else {
                 $this->_getOrder()->addStatusHistoryComment($this->_getHistoryComment($statusData))->save();
             }
@@ -287,24 +289,28 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
      * Set magento state status and history comment
      * 
      * @param array $statusData
-     * @param string $state
+     * @param string $status
      */
-    private function _handleMagentoStatusUpdate(array $statusData, $state)
-    {
+    private function _handleMagentoStatusUpdate(array $statusData, $status)
+    {        
         $comment = $this->_getHistoryComment($statusData);
         
-        if ($this->_getOrder()->isStateProtected($state)) {
-            $this->_getOrder()->setState(
-                $state, 
-                $state, 
-                $comment
-            )->save();
-        } else {
-            $this->_getOrder()->setData('state', $state);
-            $this->_getOrder()->setStatus($state);
-            $this->_getOrder()->addStatusHistoryComment($comment, false);
-            $this->_getOrder()->save();
-        }
+        $state = Mage::getResourceModel('sales/order_status_collection')
+                                ->joinStates()->addStatusFilter($status)
+                                ->getFirstItem()
+                                ->getData('state');
+                
+        $this->_getOrder()->setStatus($status);
+        $this->_getOrder()->setState(
+            $state, 
+            false,
+            $comment, 
+            false
+        );
+        
+        $this->_getOrder()->addStatusHistoryComment($this->_getHistoryComment($statusData));
+        
+        $this->_getOrder()->save();
     }
     
     /**
@@ -324,7 +330,10 @@ class Paymentnetwork_Pnsofortueberweisung_PaymentController extends Mage_Core_Co
         
         $comment = str_replace('[[date]]', date('d.m.Y H:i:s', Mage::getModel('core/date')->timestamp(time())), $comment);
         $comment = str_replace('[[transaction_id]]', $statusData['transaction_id'], $comment);
-        $comment = str_replace('[[refunded_amount]]', $statusData['refunded_amount'], $comment);
+        
+        if (array_key_exists('refunded_amount', $statusData)) {
+            $comment = str_replace('[[refunded_amount]]', $statusData['refunded_amount'], $comment);
+        }
         
         return $comment;
     }
